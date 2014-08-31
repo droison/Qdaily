@@ -4,5 +4,9 @@
     <string name="app_name">好奇心日报</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="maintab1">Daily</string>
+    <string name="maintab2">推荐</string>
+    <string name="maintab3">生活研究院</string>
+    <string name="maintab4">发现</string>
 
 </resources>
