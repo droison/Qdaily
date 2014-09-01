@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="dexedLibs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android-support-v4-b4a2cbeecd3c0529f2e919ea7244f3e3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/universal-image-loader-1.9.2-with-sources-186ad72a0cff41c0c699468c67df09be.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/android_api_3_4-f3d4e381913acf4c06b549f02ff0f674.jar!/" />
+      <root url="jar://$PROJECT_DIR$/bin/dexedLibs/universal-image-loader-1.9.2-javadoc-0ab8796296c8fdbd3bef6e8c5f556687.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

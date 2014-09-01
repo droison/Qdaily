@@ -1,5 +1,7 @@
 package com.qdaily.ui;
 
+import com.qdaily.BaiduMTJ.BaiduMTJFragment;
+import com.qdaily.BaiduMTJ.BaiduMTJFragmentActivity;
 import com.qdaily.ui.R;
 import com.qdaily.ui.fragment.Home_Fragment;
 import com.qdaily.ui.fragment.Me_Fragment;
@@ -27,7 +29,7 @@ import android.support.v4.app.FragmentActivity;
  * @version V1.0
  */
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends BaiduMTJFragmentActivity {
 
 	TabHost tabHost;
 	TabWidget tabWidget;
