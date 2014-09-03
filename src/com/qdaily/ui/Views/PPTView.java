@@ -90,6 +90,10 @@ public class PPTView {
         viewPager.setOnPageChangeListener(new MyPageChangeListener());
     }
 
+    public void refreshPPTView(List<PPT> pbs){
+
+    }
+
     public View getPPTView(){
         return convertView;
     }

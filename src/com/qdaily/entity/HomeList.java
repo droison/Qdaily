@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class HomeList {
     private List<PPT> ppts;
+    private List<Magazine> magazines;
     private String page;
 
     public List<PPT> getPpts() {
@@ -23,5 +24,13 @@ public class HomeList {
 
     public void setPage(String page) {
         this.page = page;
+    }
+
+    public List<Magazine> getMagazines() {
+        return magazines;
+    }
+
+    public void setMagazines(List<Magazine> magazines) {
+        this.magazines = magazines;
     }
 }
