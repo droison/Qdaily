@@ -1,240 +1,196 @@
 package com.qdaily.ui;
 
-import com.qdaily.BaiduMTJ.BaiduMTJFragment;
 import com.qdaily.BaiduMTJ.BaiduMTJFragmentActivity;
-import com.qdaily.ui.R;
-import com.qdaily.ui.fragment.Home_Fragment;
-import com.qdaily.ui.fragment.Me_Fragment;
-import com.qdaily.ui.fragment.Message_Fragment;
-import com.qdaily.ui.fragment.Wall_Fragment;
-import com.qdaily.util.DummyTabContent;
+import com.qdaily.ui.fragment.FindFragment;
+import com.qdaily.ui.fragment.HomeFragment;
+import com.qdaily.ui.fragment.RecommendFragment;
+import com.qdaily.ui.fragment.ResearchFragment;
+
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TabHost;
-import android.widget.TabWidget;
 import android.widget.TextView;
-import android.support.v4.app.FragmentActivity;
 
 /**
- * @Description: 主Activity，底部TabHost选项卡
- * 
- * @Author Hades
- * 
- * @date 2012-10-6
- * 
  * @version V1.0
+ * @Description: 主Activity，底部TabHost选项卡
+ * @Author bill
+ * @date 2014-9-1
  */
 
-public class MainActivity extends BaiduMTJFragmentActivity {
+public class MainActivity extends BaiduMTJFragmentActivity implements View.OnClickListener {
 
-	TabHost tabHost;
-	TabWidget tabWidget;
-	LinearLayout bottom_layout;
-	int CURRENT_TAB = 0; // 设置常量
-	Home_Fragment homeFragment;
-	Wall_Fragment wallFragment;
-	Message_Fragment messageFragment;
-	Me_Fragment meFragment;
-	android.support.v4.app.FragmentTransaction ft;
-	RelativeLayout tabIndicator1, tabIndicator2, tabIndicator3, tabIndicator4;
-	String TAB1 = "tab1";
-	String TAB2 = "tab2";
-	String TAB3 = "tab3";
-	String TAB4 = "tab4";
+    LinearLayout tab_layout;
+    int CURRENT_TAB = 0; // 设置常量
+    HomeFragment homeFragment;
+    RecommendFragment recommendFragment;
+    ResearchFragment researchFragment;
+    FindFragment findFragment;
+    android.support.v4.app.FragmentTransaction ft;
+    TextView maintab1, maintab2, maintab3, maintab4;
+    LinearLayout maintab;
+    RelativeLayout maintitle;
+    String TAB1 = "tab1";
+    String TAB2 = "tab2";
+    String TAB3 = "tab3";
+    String TAB4 = "tab4";
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		findTabView();
-		tabHost.setup();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setUpView();
+        initFragment(0);
+    }
 
-		/** 监听 */
-		TabHost.OnTabChangeListener tabChangeListener = new TabHost.OnTabChangeListener() {
-			@Override
-			public void onTabChanged(String tabId) {
+    public void hideBottomAndTitle(){
+        hideTitle();
+        hideBottom();
+    }
 
-				/** 碎片管理 */
-				android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
-				homeFragment = (Home_Fragment) fm.findFragmentByTag(TAB1);
-				wallFragment = (Wall_Fragment) fm.findFragmentByTag(TAB2);
-				messageFragment = (Message_Fragment) fm.findFragmentByTag(TAB3);
-				meFragment = (Me_Fragment) fm.findFragmentByTag(TAB4);
-				ft = fm.beginTransaction();
+    public void hideBottom(){
+        maintab.setVisibility(View.GONE);
+    }
 
-				/** 如果存在Detaches掉 */
-				if (homeFragment != null)
-					ft.detach(homeFragment);
+    public void hideTitle(){
+        maintitle.setVisibility(View.GONE);
+    }
 
-				/** 如果存在Detaches掉 */
-				if (wallFragment != null)
-					ft.detach(wallFragment);
+    public void showBottomAndTitle(){
+        showTitle();
+        showBottom();
+    }
 
-				/** 如果存在Detaches掉 */
-				if (messageFragment != null)
-					ft.detach(messageFragment);
+    public void showBottom(){
+        maintab.setVisibility(View.VISIBLE);
+    }
 
-				/** 如果存在Detaches掉 */
-				if (meFragment != null)
-					ft.detach(meFragment);
+    public void showTitle(){
+        maintitle.setVisibility(View.VISIBLE);
+    }
 
-				/** 如果当前选项卡是home */
-				if (tabId.equalsIgnoreCase(TAB1)) {
-					isTabHome();
-					CURRENT_TAB = 1;
 
-					/** 如果当前选项卡是wall */
-				} else if (tabId.equalsIgnoreCase(TAB2)) {
-					isTabWall();
-					CURRENT_TAB = 2;
+    // 判断当前
+    public void isTabHome() {
+        if (homeFragment == null) {
+            ft.add(R.id.realtabcontent, new HomeFragment(), TAB1);
+        } else {
+            ft.attach(homeFragment);
+        }
+    }
 
-					/** 如果当前选项卡是message */
-				} else if (tabId.equalsIgnoreCase(TAB3)) {
-					isTabMessage();
-					CURRENT_TAB = 3;
+    public void isTabWall() {
 
-					/** 如果当前选项卡是me */
-				} else if (tabId.equalsIgnoreCase(TAB4)) {
-					isTabMe();
-					CURRENT_TAB = 4;
-				} else {
-					switch (CURRENT_TAB) {
-					case 1:
-						isTabHome();
-						break;
-					case 2:
-						isTabWall();
-						break;
-					case 3:
-						isTabMessage();
-						break;
-					case 4:
-						isTabMe();
-						tabWidget.setVisibility(View.GONE);
+        if (recommendFragment == null) {
+            ft.add(R.id.realtabcontent, new RecommendFragment(), TAB2);
+        } else {
+            ft.attach(recommendFragment);
+        }
+    }
 
-						break;
-					default:
-						isTabHome();
-						break;
-					}
+    public void isTabMessage() {
 
-				}
-				ft.commit();
+        if (researchFragment == null) {
+            ft.add(R.id.realtabcontent, new ResearchFragment(), TAB3);
+        } else {
+            ft.attach(researchFragment);
+        }
+    }
 
-			}
+    public void isTabMe() {
+        if (findFragment == null) {
+            ft.add(R.id.realtabcontent, new FindFragment(), TAB4);
+        } else {
+            ft.attach(findFragment);
+        }
+    }
 
-		};
-		// 设置初始选项卡
-		tabHost.setCurrentTab(0);
-		tabHost.setOnTabChangedListener(tabChangeListener);
-		initTab();
-		/** 设置初始化界面 */
-		tabHost.setCurrentTab(0);
+    /**
+     * 找到Tabhost布局
+     */
+    public void setUpView() {
+        tab_layout = (LinearLayout) this.findViewById(R.id.maintab);
+        maintab1 = (TextView) this.findViewById(R.id.maintab1);
+        maintab2 = (TextView) this.findViewById(R.id.maintab2);
+        maintab3 = (TextView) this.findViewById(R.id.maintab3);
+        maintab4 = (TextView) this.findViewById(R.id.maintab4);
+        maintab1.setOnClickListener(this);
+        maintab2.setOnClickListener(this);
+        maintab3.setOnClickListener(this);
+        maintab4.setOnClickListener(this);
+        maintitle = (RelativeLayout)this.findViewById(R.id.maintitle);
+        maintab = (LinearLayout)this.findViewById(R.id.maintab);
+    }
 
-	}
+    @Override
+    public void onClick(View view) {
+        initFragment(view.getId());
+    }
 
-	// 判断当前
-	public void isTabHome() {
+    private void initFragment(int viewId) {
 
-		if (homeFragment == null) {
-			ft.add(R.id.realtabcontent, new Home_Fragment(), TAB1);
-		} else {
-			ft.attach(homeFragment);
-		}
-	}
+        /** 碎片管理 */
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
+        homeFragment = (HomeFragment) fm.findFragmentByTag(TAB1);
+        recommendFragment = (RecommendFragment) fm.findFragmentByTag(TAB2);
+        researchFragment = (ResearchFragment) fm.findFragmentByTag(TAB3);
+        findFragment = (FindFragment) fm.findFragmentByTag(TAB4);
+        ft = fm.beginTransaction();
 
-	public void isTabWall() {
+        /** 如果存在Detaches掉 */
+        if (homeFragment != null)
+            ft.detach(homeFragment);
 
-		if (wallFragment == null) {
-			ft.add(R.id.realtabcontent, new Wall_Fragment(), TAB2);
-		} else {
-			ft.attach(wallFragment);
-		}
-	}
+        /** 如果存在Detaches掉 */
+        if (recommendFragment != null)
+            ft.detach(recommendFragment);
 
-	public void isTabMessage() {
+        /** 如果存在Detaches掉 */
+        if (researchFragment != null)
+            ft.detach(researchFragment);
 
-		if (messageFragment == null) {
-			ft.add(R.id.realtabcontent, new Message_Fragment(), TAB3);
-		} else {
-			ft.attach(messageFragment);
-		}
-	}
+        /** 如果存在Detaches掉 */
+        if (findFragment != null)
+            ft.detach(findFragment);
 
-	public void isTabMe() {
-
-		if (meFragment == null) {
-			ft.add(R.id.realtabcontent, new Me_Fragment(), TAB4);
-		} else {
-			ft.attach(meFragment);
-		}
-	}
-
-	/**
-	 * 找到Tabhost布局
-	 */
-	public void findTabView() {
-
-		tabHost = (TabHost) findViewById(android.R.id.tabhost);
-		tabWidget = (TabWidget) findViewById(android.R.id.tabs);
-		LinearLayout layout = (LinearLayout) tabHost.getChildAt(0);
-		TabWidget tw = (TabWidget) layout.getChildAt(1);
-
-		tabIndicator1 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tab_indicator, tw, false);
-		TextView tvTab1 = (TextView) tabIndicator1.getChildAt(1);
-		ImageView ivTab1 = (ImageView) tabIndicator1.getChildAt(0);
-		ivTab1.setBackgroundResource(R.drawable.maintab1);
-		tvTab1.setText(R.string.maintab1);
-
-		tabIndicator2 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tab_indicator, tw, false);
-		TextView tvTab2 = (TextView) tabIndicator2.getChildAt(1);
-		ImageView ivTab2 = (ImageView) tabIndicator2.getChildAt(0);
-		ivTab2.setBackgroundResource(R.drawable.maintab2);
-		tvTab2.setText(R.string.maintab2);
-
-		tabIndicator3 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tab_indicator, tw, false);
-		TextView tvTab3 = (TextView) tabIndicator3.getChildAt(1);
-		ImageView ivTab3 = (ImageView) tabIndicator3.getChildAt(0);
-		ivTab3.setBackgroundResource(R.drawable.maintab3);
-		tvTab3.setText(R.string.maintab4);
-
-		tabIndicator4 = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.tab_indicator, tw, false);
-		TextView tvTab4 = (TextView) tabIndicator4.getChildAt(1);
-		ImageView ivTab4 = (ImageView) tabIndicator4.getChildAt(0);
-		ivTab4.setBackgroundResource(R.drawable.maintab4);
-		tvTab4.setText(R.string.maintab4);
-	}
-
-	/**
-	 * 初始化选项卡
-	 * 
-	 * */
-	public void initTab() {
-
-		TabHost.TabSpec tSpecHome = tabHost.newTabSpec(TAB1);
-		tSpecHome.setIndicator(tabIndicator1);
-		tSpecHome.setContent(new DummyTabContent(getBaseContext()));
-		tabHost.addTab(tSpecHome);
-
-		TabHost.TabSpec tSpecWall = tabHost.newTabSpec(TAB2);
-		tSpecWall.setIndicator(tabIndicator2);
-		tSpecWall.setContent(new DummyTabContent(getBaseContext()));
-		tabHost.addTab(tSpecWall);
-
-		TabHost.TabSpec tSpecCamera = tabHost.newTabSpec(TAB3);
-		tSpecCamera.setIndicator(tabIndicator3);
-		tSpecCamera.setContent(new DummyTabContent(getBaseContext()));
-		tabHost.addTab(tSpecCamera);
-
-		TabHost.TabSpec tSpecMessage = tabHost.newTabSpec(TAB4);
-		tSpecMessage.setIndicator(tabIndicator4);
-		tSpecMessage.setContent(new DummyTabContent(getBaseContext()));
-		tabHost.addTab(tSpecMessage);
-
-	}
-
+        switch (viewId) {
+            case R.id.maintab1:
+                isTabHome();
+                CURRENT_TAB = 1;
+                break;
+            case R.id.maintab2:
+                isTabWall();
+                CURRENT_TAB = 2;
+                break;
+            case R.id.maintab3:
+                isTabMessage();
+                CURRENT_TAB = 3;
+                break;
+            case R.id.maintab4:
+                isTabMe();
+                CURRENT_TAB = 4;
+                break;
+            default:
+                switch (CURRENT_TAB) {
+                    case 1:
+                        isTabHome();
+                        break;
+                    case 2:
+                        isTabWall();
+                        break;
+                    case 3:
+                        isTabMessage();
+                        break;
+                    case 4:
+                        isTabMe();
+                        break;
+                    default:
+                        isTabHome();
+                        break;
+                }
+                break;
+        }
+        ft.commit();
+    }
 }

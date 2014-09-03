@@ -24,7 +24,9 @@ public class AppConstants {
 	 * URL
 	 */
 	public interface HTTPURL {
-		
+		public static final String server = "http://qdaily.com/";
+        public static final String HomeList = server + "app/homes?page=";//后跟页码
+
 	}
 	
 	public static class Config {
