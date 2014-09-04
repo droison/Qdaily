@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class WebArticle {
 
-    private Integer article_id;// 1383,
+    private int article_id;// 1383,
     private String url;// "qdaily.com/app/articles/webview?article_id=1383",
     private String pictures;// [ ],
     private String praised;// false,
@@ -24,11 +24,11 @@ public class WebArticle {
     private Integer praise_count;// 0,
     private List<String> tags;// [ "Zed Nelson" ]
 
-    public Integer getArticle_id() {
+    public int getArticle_id() {
         return article_id;
     }
 
-    public void setArticle_id(Integer article_id) {
+    public void setArticle_id(int article_id) {
         this.article_id = article_id;
     }
 

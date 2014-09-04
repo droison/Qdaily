@@ -21,7 +21,9 @@ import com.qdaily.entity.WebArticle;
 import com.qdaily.entity.WebArticleList;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by song on 9/4/14.
@@ -34,6 +36,8 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
     private boolean isFirst;
     private boolean isLast;
     private int curArticleId;
+    private int curItemId;
+    private HashMap<String, WebView> webViewPool;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +54,7 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
         curArticleId = getIntent().getIntExtra("articleId",-1);
         isRunning = false;
         articleArrayList = new ArrayList<WebArticle>();
+        webViewPool = new HashMap<String, WebView>();
         loadData(curArticleId);
     }
 
@@ -158,13 +163,23 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
                 tempList.add(articleArrayList.get(i+1));
             }
             adapter.setArticles(tempList);
+            { //准备池子
+                webViewPool.clear();
+                webViewPool.putAll(adapter.getCurWebMap());
+                adapter.clearWebMap();
+            }
             adapter.notifyDataSetChanged();
-            pager.setCurrentItem(curPage);
+
+            pager.setCurrentItem(curPage, false);
         }
         else
         {
             loadData(curArticleId);
         }
+    }
+
+    private WebView getWebView(String url){
+        return webViewPool.get(url);
     }
 
     @Override
@@ -174,9 +189,11 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
     @Override
     public void onPageSelected(int i){
         int temp = adapter.getCurrId(i);
-        if (temp!=-1)
+        if (temp!=-1&&curArticleId!=temp)
+        {
             curArticleId = temp;
-        loadData(curArticleId);
+            loadData(curArticleId);
+        }
     }
     @Override
     public void onPageScrollStateChanged(int i){
@@ -187,10 +204,20 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
 
         private LayoutInflater inflater;
         private List<WebArticle> articles;
+        private Map<String, WebView> curWebMap;
 
         public WebPagerAdapter() {
             articles = new ArrayList<WebArticle>();
+            curWebMap = new HashMap<String, WebView>();
             inflater = getLayoutInflater();
+        }
+
+        public Map<String, WebView> getCurWebMap(){
+            return curWebMap;
+        }
+
+        public void clearWebMap(){
+            curWebMap.clear();
         }
 
         public void setArticles(List<WebArticle> articles){
@@ -216,10 +243,20 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
 
         @Override
         public Object instantiateItem(ViewGroup view, int position) {
-            WebView webview = new WebView(WebInPagerActivity.this);
-            webview.loadUrl("http://"+articles.get(position).getUrl());
+            WebView webview;
+            webview = getWebView(articles.get(position).getUrl());
+            if (webview == null){
+                webview = new WebView(WebInPagerActivity.this);
+                webview.loadUrl("http://"+articles.get(position).getUrl());
+            }
+            curWebMap.put(articles.get(position).getUrl(), webview);
             view.addView(webview, 0);
             return webview;
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
         }
 
         @Override
@@ -236,4 +273,6 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
             return null;
         }
     }
+
+
 }
