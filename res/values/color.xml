@@ -3,4 +3,7 @@
     <color name="main_bg_color">#04508b</color>
     <color name="main_title_bg">#ff0e9fde</color>
     <color name="white">#ffffffff</color>
+    <color name="research_title">#ff000000</color>
+    <color name="research_des">#ff333333</color>
+    <color name="research_bg">#ffffffff</color>
 </resources>

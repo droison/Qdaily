@@ -64,6 +64,8 @@ public class ScaleImageView extends ImageView {
     @Override
     public void setImageDrawable(Drawable d) {
         super.setImageDrawable(d);
+        if (d!=null)
+            imageHeight = imageWidth * d.getIntrinsicHeight()/d.getIntrinsicWidth();
         if (imageChangeListener != null)
             imageChangeListener.changed((d == null));
     }

@@ -12,6 +12,7 @@ import com.qdaily.ui.Adapter.PicGridAdapter;
 import com.qdaily.ui.MainActivity;
 import com.qdaily.ui.R;
 import com.qdaily.ui.Views.PPTView;
+import com.qdaily.util.ImageFetcher;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -35,7 +36,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
     private boolean isShow;
     private int loadDataType; //1为下拉刷新 2为加载更多
     private boolean isRunning;
-
+    private ImageFetcher mImageFetcher;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.maintab_daily, null);
+        view = inflater.inflate(R.layout.maintab_daily, container, false);
         setUpView();
         initData();
 		return view;
@@ -67,7 +68,9 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                 .cacheOnDisk(true)
                 .cacheInMemory(true)
                 .build();
-        mAdapter = new PicGridAdapter(parentActivity, mAdapterView, options);
+        mImageFetcher = new ImageFetcher(parentActivity, 240);
+        mImageFetcher.setLoadingImage(R.drawable.empty_photo);
+        mAdapter = new PicGridAdapter(parentActivity, mAdapterView, mImageFetcher);
         loadDataType = 1;
         isRunning = false;
         currentPage = 1;
@@ -119,6 +122,10 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                             mAdapter.addItemLast(homeList.getMagazines());
                             mAdapter.notifyDataSetChanged();
                         }
+                    }else
+                    {
+                        if (currentPage>1) //表示当前页面已经没有值了
+                            currentPage--;
                     }
                     break;
                 default:

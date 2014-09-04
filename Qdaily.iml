@@ -14,8 +14,10 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="DroisonUtil" exported="" />
-    <orderEntry type="library" name="libs" level="project" />
-    <orderEntry type="library" name="dexedLibs" level="project" />
+    <orderEntry type="library" exported="" name="libs" level="project" />
+    <orderEntry type="library" exported="" name="dexedLibs" level="project" />
+    <orderEntry type="library" name="universal-image-loader-1.9.2 (2)" level="project" />
+    <orderEntry type="library" name="mframework" level="project" />
   </component>
 </module>
 
