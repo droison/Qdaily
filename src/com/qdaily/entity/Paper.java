@@ -12,7 +12,7 @@ public class Paper {
     private String paperShow;// "qdaily.com/system/papers/papershows/60/mediumApp/60.jpg?1409790703",
     private String publish_time;// "2014-09-04T08;//30;//27+08;//00",
     private Integer genre;// 1,
-    private Integer join_count;// 115
+    private int join_count;// 115
 
     public Integer getPaper_id() {
         return paper_id;
@@ -70,11 +70,11 @@ public class Paper {
         this.genre = genre;
     }
 
-    public Integer getJoin_count() {
+    public int getJoin_count() {
         return join_count;
     }
 
-    public void setJoin_count(Integer join_count) {
+    public void setJoin_count(int join_count) {
         this.join_count = join_count;
     }
 }

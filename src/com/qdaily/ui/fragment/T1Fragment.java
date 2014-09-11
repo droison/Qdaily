@@ -24,7 +24,7 @@ import android.view.ViewGroup;
 
 import me.maxwin.view.XListView;
 
-public class HomeFragment extends Fragment implements XListView.IXListViewListener {
+public class T1Fragment extends Fragment implements XListView.IXListViewListener {
 
     private MainActivity parentActivity;
     private View view;
@@ -70,7 +70,7 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                 .build();
         mImageFetcher = new ImageFetcher(parentActivity, 240);
         mImageFetcher.setLoadingImage(R.drawable.empty_photo);
-        mAdapter = new PicGridAdapter(parentActivity, mAdapterView, mImageFetcher);
+        mAdapter = new PicGridAdapter(parentActivity, mAdapterView, options);
         loadDataType = 1;
         isRunning = false;
         currentPage = 1;
@@ -98,12 +98,13 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
                     if (currentPage == 1)
                     {
                         if (homeList.getPpts()!=null && homeList.getPpts().size()>0) {
-                            if (pptView == null) {
+                            if (mAdapterView.getHeaderViewsCount()>1&&pptView!=null){
+                                pptView.refreshPPTView(homeList.getPpts());
+                            }else {
                                 pptView = new PPTView(homeList.getPpts(), parentActivity, options);
+                                mAdapterView.setAdapter(null);
                                 mAdapterView.addHeaderView(pptView.getPPTView());
                                 pptView.startScheduled();
-                            } else {
-                                pptView.refreshPPTView(homeList.getPpts());
                             }
                         }
                         mAdapterView.setAdapter(mAdapter);
@@ -166,12 +167,12 @@ public class HomeFragment extends Fragment implements XListView.IXListViewListen
 
     @Override
     public void onScrolling(Boolean isUp){
-        if (isUp&&!isShow){
-            parentActivity.showBottomAndTitle();
-            isShow = true;
-        }else if (!isUp&&isShow){
-            parentActivity.hideBottomAndTitle();
-            isShow = false;
-        }
+//        if (isUp&&!isShow){
+//            parentActivity.showBottomAndTitle();
+//            isShow = true;
+//        }else if (!isUp&&isShow){
+//            parentActivity.hideBottomAndTitle();
+//            isShow = false;
+//        }
     }
 }

@@ -1,5 +1,6 @@
 package com.qdaily.ui.Views;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -8,8 +9,11 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.droison.util.DpSpDip2Px;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -19,6 +23,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.qdaily.entity.PPT;
 import com.qdaily.ui.R;
+import com.qdaily.util.ImageScale;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -38,25 +43,34 @@ public class PPTView {
     private int currentItem = 0;
     private ScheduledExecutorService scheduledExecutorService;
     private LinearLayout dot_layout;
-    private DpSpDip2Px dp2sp;
     private DisplayImageOptions pptOptions;
     private ImageLoader imageLoader = ImageLoader.getInstance();
     private ImageLoadingListener displayListener = new DisplayListener();
     private View convertView;
+    private RelativeLayout ppt_layout;
 
-    public PPTView(List<PPT> pbs, Context mContext, DisplayImageOptions pptOptions) {
+    private TextView ppt_tag, ppt_title, ppt_icon_text;
+    private ImageView ppt_icon_img;
 
-        dp2sp = new DpSpDip2Px(mContext);
-        //
+    private List<PPT> pbs;
+
+    public PPTView(List<PPT> pbs, Activity mContext, DisplayImageOptions pptOptions) {
+
+        this.pbs = pbs;
         LayoutInflater layoutInflator = LayoutInflater.from(mContext);
         convertView = layoutInflator.inflate(R.layout.home_ppt, null);
         viewPager = (ViewPager)convertView.findViewById(R.id.ppt_viewpager);
-        viewPager.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, dp2sp.getPPTHigh()));
-
+        ppt_layout = (RelativeLayout) convertView.findViewById(R.id.ppt_layout);
+        ppt_layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ImageScale.getTab1PPTHeigh(mContext)));
         dot_layout = (LinearLayout) convertView.findViewById(R.id.dot_layout);
         this.pptOptions = pptOptions;
         imageViews = new ArrayList<ImageView>();
         dots = new ArrayList<View>();
+
+        ppt_tag = (TextView) convertView.findViewById(R.id.ppt_tag);
+        ppt_title = (TextView) convertView.findViewById(R.id.ppt_title);
+        ppt_icon_text = (TextView) convertView.findViewById(R.id.ppt_icon_text);
+        ppt_icon_img = (ImageView) convertView.findViewById(R.id.ppt_icon_img);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(10, 10);
         lp.setMargins(5, 0, 5, 0);
@@ -65,6 +79,7 @@ public class PPTView {
             final PPT pb = pbs.get(i);
             final ImageView imageView = new ImageView(mContext);
             imageView.setImageResource(R.drawable.image_default);
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageLoader.displayImage("http://" + pb.getBanner(), imageView, pptOptions, displayListener);
 
             imageView.setOnClickListener(new View.OnClickListener() {
@@ -134,8 +149,8 @@ public class PPTView {
         public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
             if (loadedImage != null) {
                 ImageView imageView = (ImageView) view;
-//				imageView.setScaleType(ScaleType.CENTER_CROP);
-                imageView.setAdjustViewBounds(true);
+				imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//                imageView.setAdjustViewBounds(true);
                 boolean firstDisplay = !displayedImages.contains(imageUri);
                 if (firstDisplay) {
                     FadeInBitmapDisplayer.animate(imageView, 500);
@@ -157,6 +172,16 @@ public class PPTView {
             dots.get(oldPosition).setBackgroundResource(R.drawable.dot_normal);
             dots.get(position).setBackgroundResource(R.drawable.dot_focused);
             oldPosition = position;
+            PPT ppt = pbs.get(position);
+            if (ppt.getSuper_tag()!=null&&ppt.getSuper_tag().length()>0){
+                ppt_tag.setVisibility(View.VISIBLE);
+                ppt_tag.setText(ppt.getSuper_tag());
+            }else {
+                ppt_tag.setVisibility(View.GONE);
+            }
+            ppt_title.setText(ppt.getTitle());
+            ppt_icon_text.setText(ppt.getCategory_title());
+            imageLoader.displayImage("http://" + ppt.getCategory_icon(), ppt_icon_img, pptOptions);
 
         }
 

@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.alibaba.fastjson.JSON;
 import com.droison.Thread.ThreadExecutor;
@@ -247,6 +248,18 @@ public class WebInPagerActivity extends BaiduMTJActivity implements ViewPager.On
             webview = getWebView(articles.get(position).getUrl());
             if (webview == null){
                 webview = new WebView(WebInPagerActivity.this);
+                webview.getSettings().setJavaScriptEnabled(true);
+                webview.setWebViewClient(new WebViewClient(){
+                    @Override
+                    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                        boolean shouldOverride = false;
+                        if (url.startsWith("http://")||url.startsWith("qdaily.com")){
+                            view.loadUrl(url);
+                            shouldOverride = true;
+                        }
+                        return shouldOverride;
+                    }
+                });
                 webview.loadUrl("http://"+articles.get(position).getUrl());
             }
             curWebMap.put(articles.get(position).getUrl(), webview);

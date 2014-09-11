@@ -1,28 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/research_bg"
     android:layout_height="wrap_content">
-<com.dodowaterfall.widget.ScaleImageView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/research_img"/>
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxLines="2"
-        android:id="@+id/research_title"
-        android:textSize="18sp"
-        android:textColor="@color/research_title"
-        android:text=""/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/research_des"
-        android:text=""
-        android:textColor="@color/research_des"
-        android:textSize="14sp"
-        />
-</LinearLayout>
+        android:background="@color/research_bg"
+        android:layout_marginBottom="@dimen/research_list_padding"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.dodowaterfall.widget.ScaleImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/research_item_img_defaultheight"
+                android:src="@drawable/image_default"
+                android:id="@+id/research_img"/>
+            <LinearLayout
+                android:layout_width="@dimen/research_item_count_width"
+                android:layout_height="@dimen/research_item_count_height"
+                android:layout_alignParentRight="true"
+                android:id="@+id/research_item_countview"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:layout_marginRight="@dimen/research_item_count_marginright"
+                android:background="#cc444444">
+                <ImageView
+                    android:layout_marginTop="@dimen/research_item_count_innermargin"
+                    android:layout_width="@dimen/research_item_count_imgwidth"
+                    android:layout_height="@dimen/research_item_count_imgwidth"
+                    android:src="@drawable/qlabs_joined"/>
+                <View
+                    android:layout_marginTop="@dimen/research_item_count_innermargin"
+                    android:layout_width="@dimen/research_item_count_linewidth"
+                    android:layout_height="@dimen/research_item_count_lineheight"
+                    android:background="@color/main_tab_line_bg"/>
+                <TextView
+                    android:layout_marginTop="@dimen/research_item_count_innermargin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="3246"
+                    android:id="@+id/research_item_count"
+                    android:gravity="center"
+                    android:textSize="@dimen/research_item_count_numsize"
+                    android:textColor="@color/main_tab_line_bg"/>
+                <View
+                    android:layout_marginTop="@dimen/research_item_count_innermargin"
+                    android:layout_width="@dimen/research_item_count_linewidth"
+                    android:layout_height="@dimen/research_item_count_lineheight"
+                    android:background="@color/main_tab_line_bg"/>
+                <TextView
+                    android:layout_marginTop="@dimen/research_item_count_innermargin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="人已参加"
+                    android:gravity="center"
+                    android:textSize="@dimen/research_item_count_dessize"
+                    android:textColor="@color/white"/>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:id="@+id/research_title"
+            android:textSize="19sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
+            android:textColor="@color/research_title"
+            android:textStyle="bold"
+            android:text=""/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/research_des"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:text=""
+            android:textColor="@color/research_des"
+            android:textSize="16sp"
+            />
+    </LinearLayout>
+</FrameLayout>

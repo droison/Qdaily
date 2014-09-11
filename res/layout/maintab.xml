@@ -3,43 +3,85 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:background="#aaaaaa"
+    android:background="@color/main_tab_bg"
     android:layout_height="@dimen/maintab_height">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/maintab1"
-        android:drawableTop="@drawable/maintab1"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        android:id="@+id/maintab1" />
-    <TextView
+        android:id="@+id/maintab1_layout"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/maintab_img_margin"
+            android:src="@drawable/tab_home_normal"
+            android:id="@+id/maintab1_img" />
+        <View
+            android:layout_width="@dimen/maintab_line_width"
+            android:layout_height="@dimen/maintab_line_height"
+            android:background="@color/main_tab_line_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/maintab1_line" />
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/maintab2"
-        android:drawableTop="@drawable/maintab2"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        android:id="@+id/maintab2" />
-    <TextView
+        android:id="@+id/maintab2_layout"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/maintab_img_margin"
+            android:src="@drawable/tab_feature_normal"
+            android:id="@+id/maintab2_img" />
+        <View
+            android:layout_width="@dimen/maintab_line_width"
+            android:layout_height="@dimen/maintab_line_height"
+            android:background="@color/main_tab_line_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/maintab2_line" />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/maintab3"
-        android:drawableTop="@drawable/maintab3"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        android:id="@+id/maintab3" />
-    <TextView
+        android:id="@+id/maintab3_layout"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/maintab_img_margin"
+            android:src="@drawable/tab_qlabs_normal"
+            android:id="@+id/maintab3_img" />
+        <View
+            android:layout_width="@dimen/maintab_line_width"
+            android:layout_height="@dimen/maintab_line_height"
+            android:background="@color/main_tab_line_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/maintab3_line" />
+    </RelativeLayout>
+    <RelativeLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:text="@string/maintab4"
-        android:drawableTop="@drawable/maintab4"
-        android:textAlignment="center"
-        android:gravity="center_horizontal"
-        android:id="@+id/maintab4" />
+        android:id="@+id/maintab4_layout"
+        android:layout_weight="1">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/maintab_img_margin"
+            android:src="@drawable/tab_search_normal"
+            android:id="@+id/maintab4_img" />
+        <View
+            android:layout_width="@dimen/maintab_line_width"
+            android:layout_height="@dimen/maintab_line_height"
+            android:background="@color/main_tab_line_bg"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/maintab4_line" />
+    </RelativeLayout>
+
 </LinearLayout>

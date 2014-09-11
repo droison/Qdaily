@@ -3,14 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_height="match_parent">
     <GridView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2"
+        android:scrollbars="none"
         android:stretchMode="columnWidth"
         android:listSelector="#ffaaaaaa"
         android:gravity="center"
+        android:horizontalSpacing="2dp"
+        android:verticalSpacing="2dp"
+        android:layout_margin="2dp"
         android:id="@+id/recommendList">
     </GridView>
 </com.droison.PullRefreshAndMoreView.PullToRefreshView>

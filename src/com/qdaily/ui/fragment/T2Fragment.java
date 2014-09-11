@@ -8,7 +8,7 @@ import com.droison.net.GetData;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.qdaily.constants.AppConstants;
 import com.qdaily.entity.RecommendList;
-import com.qdaily.ui.Adapter.RecommendGridAdapter;
+import com.qdaily.ui.Adapter.T2Adapter;
 import com.qdaily.ui.MainActivity;
 import com.qdaily.ui.R;
 
@@ -23,7 +23,7 @@ import android.widget.GridView;
 
 import java.util.Date;
 
-public class RecommendFragment extends Fragment implements PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener{
+public class T2Fragment extends Fragment implements PullToRefreshView.OnHeaderRefreshListener, PullToRefreshView.OnFooterRefreshListener{
     private int currentPage = 1;
     private MainActivity parentActivity;
     private PullToRefreshView root;
@@ -31,7 +31,7 @@ public class RecommendFragment extends Fragment implements PullToRefreshView.OnH
     DisplayImageOptions options;
     private int loadDataType; //1为下拉刷新 2为加载更多
     private boolean isRunning;
-    private RecommendGridAdapter mAdapter;
+    private T2Adapter mAdapter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -53,6 +53,7 @@ public class RecommendFragment extends Fragment implements PullToRefreshView.OnH
 
     private void setUpListener() {
         root.setOnHeaderRefreshListener(this);
+        root.setFooterRefresh(false);
         root.setOnFooterRefreshListener(this);
         root.setHeadRefresh(true);
 
@@ -67,9 +68,9 @@ public class RecommendFragment extends Fragment implements PullToRefreshView.OnH
                 .showImageOnFail(R.drawable.maintab3)
                 .considerExifParams(true)
                 .cacheOnDisk(true)
-                .cacheInMemory(true)
+                .cacheInMemory(false)
                 .build();
-        mAdapter = new RecommendGridAdapter(parentActivity, options);
+        mAdapter = new T2Adapter(parentActivity, options);
         recommendView.setAdapter(mAdapter);
         loadDataType = 1;
         isRunning = false;

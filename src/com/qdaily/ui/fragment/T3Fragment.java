@@ -4,15 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.droison.Thread.ThreadExecutor;
 import com.droison.constants.Constant;
 import com.droison.net.GetData;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.qdaily.constants.AppConstants;
-import com.qdaily.entity.HomeList;
 import com.qdaily.entity.PaperList;
-import com.qdaily.ui.Adapter.PicGridAdapter;
-import com.qdaily.ui.Adapter.ResearchAdapter;
+import com.qdaily.ui.Adapter.T3Adapter;
 import com.qdaily.ui.MainActivity;
 import com.qdaily.ui.R;
-import com.qdaily.ui.Views.PPTView;
 import com.qdaily.util.ImageFetcher;
 
 import android.os.Bundle;
@@ -25,11 +21,11 @@ import android.view.ViewGroup;
 
 import me.maxwin.view.XListView;
 
-public class ResearchFragment extends Fragment implements XListView.IXListViewListener{
+public class T3Fragment extends Fragment implements XListView.IXListViewListener{
     private MainActivity parentActivity;
     private View view;
     private XListView mAdapterView = null;
-    private ResearchAdapter mAdapter = null;
+    private T3Adapter mAdapter = null;
     private int currentPage;
     private int loadDataType; //1为下拉刷新 2为加载更多
     private boolean isRunning;
@@ -60,7 +56,9 @@ public class ResearchFragment extends Fragment implements XListView.IXListViewLi
 
         mImageFetcher = new ImageFetcher(parentActivity, 240);
         mImageFetcher.setLoadingImage(R.drawable.empty_photo);
-        mAdapter = new ResearchAdapter(parentActivity, mAdapterView, mImageFetcher);
+        mAdapter = new T3Adapter(parentActivity, mAdapterView, mImageFetcher);
+
+        mAdapterView.setAdapter(mAdapter);
         loadDataType = 1;
         isRunning = false;
         currentPage = 1;
@@ -86,7 +84,6 @@ public class ResearchFragment extends Fragment implements XListView.IXListViewLi
 
                     PaperList paperList = JSON.parseObject(json, PaperList.class);
 
-                     mAdapterView.setAdapter(mAdapter);
                     if (paperList.getPapers()!=null&&paperList.getPapers().size()>0)
                     {
                         if (loadDataType==1)

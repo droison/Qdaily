@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@color/question_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/question_comment_headimg"
+    android:layout_marginLeft="@dimen/question_commenttitle_marginLeft"
+    android:layout_marginTop="33dp">
+    <ImageView
+        android:layout_width="@dimen/question_comment_headimg"
+        android:layout_height="@dimen/question_comment_headimg"
+        android:src="@drawable/image_default"
+        android:id="@+id/question_comment_headimg"
+        />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:layout_centerVertical="true"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/question_comment_headimg"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/question_comment_username"
+            android:text="匿名"
+            android:textSize="16sp"
+            android:textColor="@color/question_text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/question_comment_time"
+            android:text="3小时前"
+            android:layout_marginTop="5dp"
+            android:textSize="13sp"
+            android:textColor="@color/question_divide_line"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/question_comment_content"
+        android:text="《哈利波特》作者J.K罗琳虽已明言不会再出续集，但仍满足了许多哈利迷的愿望，近日在一篇短篇小说中，描述了哈利成人之后的中年故事。你现在对《哈利波特》是什么样的感情"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="26dp"
+        android:layout_marginRight="26dp"
+        android:textSize="15sp"
+        android:textColor="@color/question_divide_line"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="26dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="37dp"
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/question_comment_headimg"
+        >
+
+        <RelativeLayout
+            android:layout_width="65dp"
+            android:layout_height="20dp"
+            android:background="@color/main_bg_color" >
+
+            </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="65dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="6dp"
+            android:background="@color/main_bg_color" >
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

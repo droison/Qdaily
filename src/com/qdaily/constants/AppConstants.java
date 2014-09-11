@@ -32,6 +32,9 @@ public class AppConstants {
         public static final String CategoryList = server + "app/articles?category_id=";//后跟类目和页码
 
         public static final String PaperList = server + "app/papers?page=";//生活研究所主页 后跟页码
+        public static final String QuestionInfo = server + "app/papers/";//后跟ID
+
+        public static final String Tab4 = server + "app/categories"; //
 	}
 	
 	public static class Config {

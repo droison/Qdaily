@@ -20,7 +20,7 @@ public class Me_Fragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
-		return inflater.inflate(R.layout.me, container, false);
+		return inflater.inflate(R.layout.maintab_find, container, false);
 	}
 
 }

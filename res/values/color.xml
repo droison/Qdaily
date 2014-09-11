@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources> 
-    <color name="main_bg_color">#04508b</color>
-    <color name="main_title_bg">#ff0e9fde</color>
+    <color name="main_bg_color">#ffc8c8c8</color>
+    <color name="main_title_bg">#ff141414</color>
+
+    <color name="main_tab_bg">#ff202020</color>
+    <color name="main_tab_line_bg">#ffffc81f</color>
+
     <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+
     <color name="research_title">#ff000000</color>
     <color name="research_des">#ff333333</color>
     <color name="research_bg">#ffffffff</color>
+    <color name="question_text">#ff000000</color>
+    <color name="question_bg">#ffffffff</color>
+    <color name="question_divide_line">#ff333333</color>
+
+    <color name="question_girditem_bg">#ff666666</color>
+    <color name="question_girditem_bg_select">#ff222222</color>
+
+    <color name="recommend_grid_bg">#ffdfdfdf</color>
+    <color name="recommend_grid_bg_in">#fff8f8f8</color>
+
+    <color name="t4_tag_line">#ff434343</color>
+    <color name="t4_tag_btn1">#ff282828</color>
+    <color name="t4_tag_btn2">#ff1c1c1c</color>
+    <color name="t4_top_bg">#ff1c1c1c</color>
+    <color name="t4_category_img_fg">#99000000</color>
+    <color name="t4_line_bg">#ff575757</color>
+    <color name="t4_title_bg">#ff0e0e0e</color>
 </resources>

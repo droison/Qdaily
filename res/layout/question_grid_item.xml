@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/question_girditem_bg"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/question_grid_img_margin">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_default"
+            android:id="@+id/question_griditem_img"
+            />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_default"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:id="@+id/question_griditem_img_select"
+            />
+    </RelativeLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="55dp"
+    android:layout_marginLeft="@dimen/question_grid_img_margin"
+    android:layout_marginRight="@dimen/question_grid_img_margin"
+    android:layout_marginBottom="@dimen/question_grid_img_margin"
+    android:textSize="16sp"
+    android:textColor="@color/question_text"
+    android:id="@+id/question_griditem_content"
+    android:text="我已经立刻看了《哈利波特》续集并幸福得死去活来了，好想去对角巷公园！"
+    />
+</LinearLayout>

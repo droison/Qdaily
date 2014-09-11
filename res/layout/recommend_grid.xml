@@ -2,21 +2,73 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/news_pic"
+    android:padding="1px"
+    android:background="@color/recommend_grid_bg"
+    android:layout_height="wrap_content">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/image_default" />
+        android:id="@+id/recommend_grid_layout"
+        android:layout_height="101dp">
+        <ImageView
+            android:id="@+id/recommend_grid_img"
+            android:layout_width="match_parent"
+            android:scaleType="centerCrop"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_default" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/recommend_grid_logo_width"
+            android:layout_marginLeft="@dimen/recommend_grid_logo_marginLeft"
+            android:layout_marginTop="@dimen/recommend_grid_logo_marginTop">
+            <ImageView
+                android:layout_width="@dimen/recommend_grid_logo_width"
+                android:layout_height="@dimen/recommend_grid_logo_width"
+                android:src="@drawable/recommend_default_logo"
+                android:id="@+id/recommend_grid_logo"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/recommend_grid_textsize"
+                android:layout_marginLeft="@dimen/recommend_grid_text_marginleft"
+                android:layout_toRightOf="@id/recommend_grid_logo"
+                android:layout_centerVertical="true"
+                android:textColor="@color/white"
+                android:id="@+id/recommend_grid_text"
+                android:text="长文章"/>
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recommend_grid_title_heigh"
+        >
+        <TextView
+            android:id="@+id/recommend_grid_title"
+            android:background="@color/recommend_grid_bg_in"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/recommend_grid_title_paddingTop"
+            android:paddingLeft="@dimen/recommend_grid_title_paddingLeft"
+            android:paddingRight="@dimen/recommend_grid_title_paddingLeft"
+            android:textSize="@dimen/recommend_grid_title_size"
+            android:singleLine="false"
+            android:maxLines="3"
+            android:visibility="visible"
+            android:text = "这个设计真他妈好"
+            android:textColor="@color/black" />
+        <ImageView
+            android:layout_width="@dimen/recommend_grid_dot_heigh"
+            android:layout_height="@dimen/recommend_grid_dot_heigh"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/share_vp_back"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/recommend_grid_dot_heigh"
+            android:layout_marginBottom="@dimen/recommend_grid_dot_heigh"
+            android:id="@+id/recommend_grid_dot"
+            />
 
-    <TextView
-        android:id="@+id/news_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:singleLine="false"
-        android:gravity="center_horizontal"
-        android:visibility="visible"
-        android:text = "这个设计真他妈好"
-        android:textColor="#ffffff" />
+    </RelativeLayout>
+
 
 </LinearLayout>

@@ -450,6 +450,9 @@ public class PLA_ListView extends PLA_AbsListView {
             // Nothing selected
         }
 
+        if (adapter==null)
+            mAdapter = adapter;
+
         requestLayout();
     }
 

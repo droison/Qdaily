@@ -6,7 +6,11 @@ android:layout_width="match_parent"
 android:layout_height="match_parent">
 <me.maxwin.view.XListView
     android:id="@+id/list"
-    android:scrollbars="vertical"
+    android:background="@color/main_bg_color"
+    android:paddingBottom="@dimen/t1_padding"
+    android:paddingRight="@dimen/t1_padding"
+    android:paddingLeft="@dimen/t1_padding"
+    android:scrollbars="none"
     android:fastScrollEnabled="true"
     android:layout_width="match_parent"
     pla:plaColumnNumber="2"

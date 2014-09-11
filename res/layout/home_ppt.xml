@@ -3,21 +3,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:paddingTop="@dimen/t1_grid_margin"
     android:layout_height="match_parent">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:padding="@dimen/t1_padding"
+        android:background="@color/main_bg_color"
+        android:id="@+id/ppt_layout"
+        android:layout_height="@dimen/home_ppt_hight" >
 
         <android.support.v4.view.ViewPager
             android:id="@+id/ppt_viewpager"
-            android:layout_width="fill_parent"
-            android:layout_height="@dimen/home_ppt_hight" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/t1_ppt_icon_width"
+            android:layout_marginLeft="@dimen/t1_ppt_icon_margin"
+            android:layout_marginTop="@dimen/t1_ppt_icon_margin"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="@dimen/t1_ppt_icon_width"
+                android:layout_height="@dimen/t1_ppt_icon_width"
+                android:src="@drawable/t4_category_icon_default"
+                android:id="@+id/ppt_icon_img"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/t1_ppt_icon_margin"
+                android:textColor="@color/white"
+                android:id="@+id/ppt_icon_text"
+                android:textSize="@dimen/t1_ppt_icon_textsize"/>
+        </LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:textSize="@dimen/t1_ppt_title_size"
+            android:layout_marginLeft="@dimen/t1_ppt_title_marginleft"
+            android:layout_marginBottom="@dimen/t1_ppt_title_marginbottom"
+            android:layout_marginRight="@dimen/t1_ppt_title_marginleft"
+            android:maxLines="3"
+            android:id="@+id/ppt_title"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/t1_ppt_tag_height"
+            android:background="@color/main_tab_line_bg"
+            android:layout_above="@id/ppt_title"
+            android:layout_marginBottom="@dimen/t1_ppt_tag_marginbottom"
+            android:layout_marginLeft="@dimen/t1_ppt_tag_marginleft"
+            android:paddingLeft="@dimen/t1_ppt_tag_paddingleft"
+            android:paddingRight="@dimen/t1_ppt_tag_paddingleft"
+            android:textSize="@dimen/t1_ppt_tag_textsize"
+            android:id="@+id/ppt_tag"
+            android:textColor="@color/black"
+            android:gravity="center"/>
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="10dip"
-            android:layout_marginTop="3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="11dp"
             android:gravity="center"
             android:orientation="vertical" >
 
@@ -30,5 +79,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

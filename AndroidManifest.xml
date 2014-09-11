@@ -85,9 +85,10 @@
         </activity>
         <activity android:name=".CategoryActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".WebInPagerActivity" />
-
-
+        <activity android:name=".WebInPagerActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".QuestionInfoActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name="cn.sharesdk.framework.ShareSDKUIShell"
@@ -126,6 +127,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true" />
+
         <!-- 易信分享回调 -->
     </application>
 
